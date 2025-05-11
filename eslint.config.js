@@ -31,7 +31,7 @@ export default [
       // React Native specific rules
       'react-native/no-unused-styles': 'error',
       'react-native/no-inline-styles': 'off',
-      'react-native/no-color-literals': 'error',
+      'react-native/no-color-literals': 'off',
 
       // React rules
       'react/jsx-uses-react': 'error',
@@ -67,6 +67,7 @@ export default [
       '@stylistic/jsx-indent-props': ['error', 2],
       '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
       '@stylistic/jsx-tag-spacing': ['error', { beforeSelfClosing: 'always' }],
+      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
     },
   },
 ];
