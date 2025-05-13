@@ -1,7 +1,7 @@
 // import { tokenCache } from '@/cache'; // Uncomment this line if you're using the custom cache
+import InitialLayout from '@/components/InitialLayout';
 import { ClerkProvider } from '@clerk/clerk-expo';
 import { tokenCache } from '@clerk/clerk-expo/token-cache';
-import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,7 +20,7 @@ export default function RootLayout() {
           style={{ flex: 1, backgroundColor: '#000' }}
         >
           <StatusBar style="light" />
-          <Stack screenOptions={{ headerShown: false }} />
+          <InitialLayout />
         </SafeAreaView>
       </SafeAreaProvider>
     </ClerkProvider>
