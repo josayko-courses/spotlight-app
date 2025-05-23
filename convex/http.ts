@@ -5,6 +5,9 @@ import { httpAction } from './_generated/server';
 
 const http = new HttpRouter();
 
+// * 1. Make sure that the webhook event is coming from Clerk
+// * 2. If so, listen for the "user.created" event
+// * 3. Then save the user to the database
 http.route({
   path: '/clerk-webhook',
   method: 'POST',
@@ -55,7 +58,7 @@ http.route({
           email,
           fullname: name,
           image: image_url,
-          clerKId: id,
+          clerkId: id,
           username: email.split('@')[0],
         });
 
