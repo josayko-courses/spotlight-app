@@ -12,10 +12,26 @@ export default function login() {
   const router = useRouter();
 
   const handleGithubSignIn = async () => {
-    console.log('handleGithubSignIn');
     try {
       const  { createdSessionId, setActive } = await startSSOFlow({
         strategy: 'oauth_github',
+        redirectUrl: AuthSession.makeRedirectUri(),
+      });
+      if (setActive && createdSessionId) {
+        setActive({ session: createdSessionId });
+        router.replace('/(tabs)');
+      }
+    } catch (err) {
+      // See https://clerk.com/docs/custom-flows/error-handling
+      // for more info on error handling
+      console.error(JSON.stringify(err, null, 2));
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const  { createdSessionId, setActive } = await startSSOFlow({
+        strategy: 'oauth_google',
         redirectUrl: AuthSession.makeRedirectUri(),
       });
       if (setActive && createdSessionId) {
@@ -52,6 +68,16 @@ export default function login() {
 
       {/* LOGIN SECTION */}
       <View style={styles.loginSection}>
+        <TouchableOpacity
+          style={styles.googleButton}
+          onPress={handleGoogleSignIn}
+          activeOpacity={0.9}
+        >
+          <View style={styles.googleIconContainer}>
+            <Ionicons name="logo-google" size={20} color={COLORS.surface} />
+          </View>
+          <Text style={styles.googleButtonText}>Continue with Google</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.googleButton}
           onPress={handleGithubSignIn}
